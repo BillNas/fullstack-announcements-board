@@ -4,12 +4,6 @@ let ObjectID = require("mongodb").ObjectID;
 
 var  router = express.Router();
 
-router.get('/pg', async (req, res) => {
-  const posts = await loadPostsCollection();
-  res.send(await posts.find({status:'0'}, {sort: [['date', -1]]}).toArray());
-  res.status(201).send();
-});
-
 router.get('/', async (req, res) => {
   const posts = await loadPostsCollection();
   res.send(await posts.find({status:'1'}, {sort: [['date', -1]]}).toArray());
