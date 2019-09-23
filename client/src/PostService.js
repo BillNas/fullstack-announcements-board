@@ -1,7 +1,6 @@
 import axios from 'axios'
-
 const url = 'api/posts/'
-const pending='api/posts/pg/'
+
 class PostService {
   static getPosts() {
     return new Promise(async (resolve, reject) => {
