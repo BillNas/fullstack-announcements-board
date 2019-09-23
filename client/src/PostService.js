@@ -23,21 +23,5 @@ class PostService {
       body
     })
   }
-    static getPending() {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const response = await axios.get(pending)
-        const data = response.data
-        resolve(
-          data.map(post => ({
-            ...post
-          }))
-        )
-      } catch (err) {
-        reject(err)
-      }
-    })
-  }
-
 }
 export default PostService
