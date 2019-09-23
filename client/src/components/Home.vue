@@ -1,28 +1,26 @@
 <template>
     <div class="container">
-       <button v-on:click="toggleForm" v-if="!formActive" class="btn btn-outline-primary btn-lg mt-3">Άνοιγμα Φόρμας</button>
-      <button v-on:click="toggleForm" v-if="formActive" class="btn btn-outline-primary btn-lg mt-3">Κλείσιμο Φόρμας</button>
+       <button v-on:click="toggleForm" v-if="!formActive" class="btn btn-outline-primary btn-lg mt-3">Open Form</button>
+      <button v-on:click="toggleForm" v-if="formActive" class="btn btn-outline-primary btn-lg mt-3">Close Form</button>
     <form class="form" @submit.prevent="createPost" v-if="showForm">
-      <h3 class="display-4 text-center">Δημιουργία Ανακοίνωσης</h3>
+      <h3 class="display-4 text-center">Create A Post</h3>
        <hr>
   <h2>
-    <label for="body" class="font-weight-bold">Ανακοίνωση</label>
+    <label for="body" class="font-weight-bold">Post</label>
   </h2>
-  <span class="badge badge-warning mb-2 ">*Ανακοινώσεις άσχετες με το ΤΕΙ θα διαγράφονται 
-    </span>
     <div class="form-group">
     <textarea class="form-control form-control-lg"  v-model="body"
     rows="3"></textarea>
   </div>
-<button type="submit" class="btn btn-success" v-if="!submittingPost">Αποστολή</button>
+<button type="submit" class="btn btn-success" v-if="!submittingPost">Submit</button>
 <div class="spinner-grow text-success" role="status" v-if="submittingPost">
     </div>
 <hr>
   </form>
-      <h3 class="display-4 text-center">Ανακοινώσεις ({{posts.length}})</h3>
+      <h3 class="display-4 text-center">Posts ({{posts.length}})</h3>
       <div class="alert alert-warning mt-2" v-if="loading">
       <h3><div class="spinner-border" role="status">&nbsp;&nbsp;
-  <span class="sr-only"></span></div> Φόρτωση Ανακοινώσεων</h3>
+  <span class="sr-only"></span></div> Loading Posts</h3>
     </div>
         <hr>
         <p class="error" v-if="error">{{error}}</p>
@@ -66,7 +64,7 @@ export default {
        await PostService.addPost(this.body);
        this.posts = await PostService.getPosts();
        this.submittingPost = !this.submittingPost;
-         this.$toasted.show("H ανακοίνωση σου υποβλήθηκε με επιτυχία και θα εμφανιστεί έπειτα απο έγκριση", { 
+         this.$toasted.show("Your post was submitted succesfully", { 
             theme: "bubble", 
             position: "top-center", 
         duration : 5000,
@@ -74,7 +72,7 @@ export default {
         });
        this.body = '';
       } 
-      else this.$toasted.show("Συμπλήρωσε το πεδίο", { 
+      else this.$toasted.show("Please fill in this field", { 
 	 theme: "", 
 	 position: "bottom-center", 
    duration : 2000,
