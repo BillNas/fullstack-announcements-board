@@ -21,12 +21,6 @@ export default new Router({
       name: 'About',
       component: About
     },
-    {
-      path: '/pg123',
-      name: 'pending',
-      component: Pending
-    },
-
     { 
     path: '/error', 
     name:'NotFound',
