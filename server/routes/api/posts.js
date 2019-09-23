@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
   await posts.insertOne({
     body: req.body.body,
     date: new Date(),
-    status: '0'
+    status: '1'
   });
   res.status(201).send();
 });
