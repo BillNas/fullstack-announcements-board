@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
   
   );
 
-  return client.db('teiste').collection('posts');
+  return client.db(DB_NAME).collection('posts');
 }
 
 module.exports = router;
