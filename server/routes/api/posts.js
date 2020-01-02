@@ -3,20 +3,18 @@ const mongodb = require('mongodb');
 let ObjectID = require("mongodb").ObjectID;
 
 var  router = express.Router();
+const posts = await loadPostsCollection();
 
 router.get('/', async (req, res) => {
-  const posts = await loadPostsCollection();
   res.send(await posts.find({status:'1'}, {sort: [['date', -1]]}).toArray());
   res.status(201).send();
 });
 
 router.get('/:id', async (req, res) => {
   var id = req.params.id;
-  const posts = await loadPostsCollection();
   res.send(await posts.findOne({_id: ObjectID(id)}));
 }); 
 router.post('/', async (req, res) => {
-  const posts = await loadPostsCollection();
   await posts.insertOne({
     body: req.body.body,
     date: new Date(),
